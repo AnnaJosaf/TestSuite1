@@ -1,0 +1,25 @@
+name: Integration Tests
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repostitory
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Build and Run Integration Tests
+      run: |
+        ./gradlew integrationTest
+        
